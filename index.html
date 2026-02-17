@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সময়সূচী ও নামাজের সময়  ২০২৬</title>
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --card-bg: rgba(0, 0, 0, 0.82);
+            --text-color: #ffffff;
+            --accent: #ff9800;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 80px;
+            color: var(--text-color);
+            background: url('https://i.postimg.cc/fRTJfprM/3a1b115174366805a8826177a5dfa90f-61820118b5b17.webp') no-repeat center center fixed;
+            background-size: cover;
+            overflow-x: hidden;
+        }
+
+        /* স্পন্সর অ্যাড */
+        .ad-container { width: 100%; display: flex; justify-content: center; margin: 10px 0; min-height: 55px; background: rgba(0,0,0,0.4); border-radius: 8px; }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background: rgba(10, 11, 16, 0.95);
+            padding: 10px 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .app-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            margin-right: 12px;
+            border-radius: 50%;
+            background: #fff;
+            padding: 2px;
+        }
+
+        .nav-scroll { display: flex; overflow-x: auto; gap: 10px; scrollbar-width: none; flex-grow: 1; }
+        .nav-scroll::-webkit-scrollbar { display: none; }
+
+        .nav-item { 
+            cursor: pointer; padding: 8px 16px; border-radius: 20px; white-space: nowrap; 
+            font-size: 0.9rem; font-weight: bold; background: rgba(255,255,255,0.1); 
+            transition: 0.3s;
+        }
+        .nav-item.active { background: var(--primary); color: #000; }
+
+        section { display: none; padding: 15px; max-width: 600px; margin: 0 auto; animation: fadeInUp 0.5s ease forwards; }
+        section.active { display: block; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { 
+            background: var(--card-bg); padding: 20px; border-radius: 15px; 
+            border: 1px solid rgba(0, 242, 255, 0.25); margin-bottom: 15px; 
+            backdrop-filter: blur(12px);
+        }
+
+        .digital-clock { font-size: 3.5rem; text-align: center; color: var(--primary); font-weight: bold; margin-bottom: 5px; }
+        .clock-date { text-align: center; font-size: 1.1rem; color: #ccc; margin-bottom: 20px; }
+
+        /* স্লাইডিং হাদিস */
+        .hadith-box { 
+            min-height: 120px; display: flex; align-items: center; justify-content: center; 
+            text-align: center; padding: 20px; background: rgba(0, 242, 255, 0.08); 
+            border-radius: 12px; border: 1px dashed var(--primary);
+        }
+        #hadith-text { font-size: 1.15rem; line-height: 1.6; font-style: italic; transition: 0.6s ease-in-out; }
+
+        .p-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 1.2rem; }
+        .p-time { color: var(--primary); font-weight: bold; }
+
+        /* নিয়ত ও দোয়া স্টাইল */
+        .dua-card { background: rgba(0,0,0,0.6); padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid var(--primary); }
+        .dua-title { color: var(--primary); font-weight: bold; font-size: 1.25rem; display: block; margin-bottom: 12px; }
+        .dua-ar { font-size: 1.7rem; color: #ffffff; direction: rtl; display: block; line-height: 2.3; text-align: right; margin-bottom: 15px; font-family: serif; }
+        .dua-bn { font-size: 1.05rem; color: #ddd; line-height: 1.7; display: block; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 5px; }
+
+        .admin-input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #444; background: #111; color: #fff; }
+        .btn-save { width: 100%; padding: 15px; background: var(--primary); color: #000; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #444; padding: 12px; text-align: center; }
+        th { background: #000; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <script>
+        function renderAd() {
+            document.write(`
+                <div class="ad-container">
+                    <script type="text/javascript">
+                        atOptions = { 'key' : 'b4163f90ac591880afe2eb689a0972a3', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+                    <\/script>
+                    <script type="text/javascript" src="https://www.highperformanceformat.com/b4163f90ac591880afe2eb689a0972a3/invoke.js"><\/script>
+                </div>
+            `);
+        }
+    </script>
+
+    <nav class="navbar">
+        <img src="https://i.postimg.cc/Z5hLYbn7/mosque-line-art-building-free-mosque-outline-mosque-illustration-mosque-icon-mosque-logo-free-vector.jpg" class="app-logo" alt="Logo">
+        <div class="nav-scroll">
+            <div class="nav-item active" onclick="showSection('home', this)">🕒 হোম</div>
+            <div class="nav-item" onclick="showSection('prayer', this)">🕌 নামাজ</div>
+            <div class="nav-item" onclick="showSection('dua', this)">📖 নিয়ত ও দোয়া</div>
+            <div class="nav-item" onclick="showSection('ramadan', this)">🌙 রমজান</div>
+            <div class="nav-item" onclick="showSection('admin', this)">⚙️ সেটিং</div>
+        </div>
+    </nav>
+
+    <section id="home" class="active">
+        <script>renderAd();</script>
+        <div class="card">
+            <div class="digital-clock" id="clock">00:00:00 AM</div>
+            <div class="clock-date" id="date-display">...</div>
+            <div class="hadith-box">
+                <div id="hadith-text">"সালাত মুমিনের নূর।"</div>
+            </div>
+        </div>
+        <script>renderAd();</script>
+    </section>
+
+    <section id="prayer">
+        <script>renderAd();</script>
+        <div class="card">
+            <h3 style="text-align:center; color:var(--primary);">🕌 নামাজের সময়সূচী</h3>
+            <div id="prayer-list"></div>
+            <div style="margin-top:20px; display:flex; justify-content:space-around; background:rgba(255,152,0,0.1); padding:10px; border-radius:10px;">
+                <span>☀️ সূর্যোদয়: <b id="v-sunrise" class="p-time">--:--</b></span>
+                <span>🌅 সূর্যাস্ত: <b id="v-sunset" class="p-time">--:--</b></span>
+            </div>
+            <div style="text-align:center; margin-top:15px; font-weight:bold; color:var(--primary);">জুমু'আহ: <span id="v-jumuah">01:30 PM</span></div>
+        </div>
+        <script>renderAd();</script>
+    </section>
+
+    <section id="dua">
+        <script>renderAd();</script>
+        <div id="dua-content"></div>
+        <script>renderAd();</script>
+    </section>
+
+    <section id="ramadan">
+        <script>renderAd();</script>
+        <div class="card">
+            <h3 style="text-align:center; color:var(--accent);">🌙 রমজান ক্যালেন্ডার ২০২৬</h3>
+            <table>
+                <thead><tr><th>রমজান</th><th>তারিখ</th><th>সাহরি</th><th>ইফতার</th></tr></thead>
+                <tbody id="ramadan-table"></tbody>
+            </table>
+        </div>
+        <script>renderAd();</script>
+    </section>
+
+    <section id="admin">
+        <div class="card">
+            <h3>⚙️ সময়সূচী  সেটআপ</h3>
+            <label>সেট আপ  টাইম :</label>
+            <input type="datetime-local" id="adm-time" class="admin-input">
+            <div id="adm-prayer-inputs"></div>
+            <button class="btn-save" onclick="saveAdmin()">সব সেভ করুন</button>
+        </div>
+    </section>
+
+    <script>
+        const pNames = { Fajr: "ফজর", Sunrise: "সূর্যোদয়", Dhuhr: "যোহর", Asr: "আসর", Sunset: "সূর্যাস্ত", Maghrib: "মাগরিব", Isha: "এশা" };
+        
+        const hadiths = [
+            "সকল কাজের ফল নিয়তের উপর নির্ভরশীল। (বুখারী)",
+            "তোমাদের মধ্যে সেই ব্যক্তিই উত্তম যার চরিত্র উত্তম। (বুখারী)",
+            "পরিষ্কার-পরিচ্ছন্নতা ঈমানের অর্ধেক। (মুসলিম)",
+            "সালাত মুমিনের মেরাজ।",
+            "হাসিমুখে কথা বলাও একটি সদকা। (তিরমিযী)",
+            "যে ব্যক্তি ইলম অন্বেষণে বের হয়, সে ফিরে আসা পর্যন্ত আল্লাহর পথে থাকে।"
+        ];
+
+        const duaData = [
+            { t: "ফজরের নিয়ত (২ রাকাত ফরজ)", ar: "نَوَيْتُ أَنْ أُصَلِّيَ رَكْعَتَيْ فَرْضَ صَلَاةِ الْفَجْرِ أَدَاءً لِلَّهِ تَعَالَى مُتَوَجِّهًا إِلَى الْقِبْلَةِ اللَّهُ أَكْبَرُ", bn: "উচ্চারণ: নাওয়াইতু আন উসল্লিয়া রাক‘আতাই ফরদ্বা সালাতিল ফাজরি আদায়ান লিল্লাহি তা‘আলা মুতাওয়াজ্জিহান ইলাল কিবলাতি আল্লাহু আকবার।" },
+            { t: "যোহরের নিয়ত (৪ রাকাত ফরজ)", ar: "نَوَيْتُ أَنْ أُصَلِّيَ أَرْبَعَ رَكَعَاتٍ فَرْضَ صَلَاةِ الظُّهْرِ أَدَاءً لِلَّهِ تَعَالَى مُتَوَجِّهًا إِلَى الْقِبْلَةِ اللَّهُ أَكْبَرُ", bn: "উচ্চারণ: নাওয়াইতু আন উসল্লিয়া আরবা‘আ রাকাআতিন ফরদ্বা সালাতিজ যুহরি আদায়ান লিল্লাহি তা‘আলা মুতাওয়াজ্জিহান ইলাল কিবলাতি আল্লাহু আকবার।" },
+            { t: "আছরের নিয়ত (৪ রাকাত ফরজ)", ar: "نَوَيْتُ أَنْ أُصَلِّيَ أَرْبَعَ رَكَعَاتٍ فَرْضَ صَلَاةِ الْعَصْرِ أَدَاءً لِلَّهِ تَعَالَى مُتَوَجِّهًا إِلَى الْقِبْلَةِ اللَّهُ أَكْبَرُ", bn: "উচ্চারণ: নাওয়াইতু আন উসল্লিয়া আরবা‘আ রাকাআতিন ফরদ্বা সালাতিল আসরি আদায়ান লিল্লাহি তা‘আলা মুতাওয়াজ্জিহান ইলাল কিবলাতি আল্লাহু আকবার।" },
+            { t: "মাগরিবের নিয়ত (৩ রাকাত ফরজ)", ar: "نَوَيْتُ أَنْ أُصَلِّيَ ثَلَاثَ رَكَعَاتٍ فَرْضَ صَلَاةِ الْمَغْرِبِ أَدَاءً لِلَّهِ تَعَالَى مُتَوَجِّهًا إِلَى الْقِبْلَةِ اللَّهُ أَكْبَرُ", bn: "উচ্চারণ: নাওয়াইতু আন উসল্লিয়া ছালাছা রাকাআতিন ফরদ্বা সালাতিল মাগরিবি আদায়ান লিল্লাহি তা‘আলা মুতাওয়াজ্জিহান ইলাল কিবলাতি আল্লাহু আকবার।" },
+            { t: "এশার নিয়ত (৪ রাকাত ফরজ)", ar: "نَوَيْتُ أَنْ أُصَلِّيَ أَرْبَعَ رَكَعَاتٍ فَرْضَ صَلَاةِ الْعِشَاءِ أَدَاءً لِلَّهِ تَعَالَى مُتَوَজِّهًا إِلَى الْقِبْلَةِ اللَّهُ أَكْبَرُ", bn: "উচ্চারণ: নাওয়াইতু আন উসল্লিয়া আরবা‘আ রাকাআতিন ফরদ্বা সালাতিল ইশাই আদায়ান লিল্লাহি তা‘আলা মুতাওয়াজ্জিহান ইলাল কিবলাতি আল্লাহু আকবার।" },
+            { t: "জুমার নামাজের নিয়ত", ar: "نَوَيْتُ أَنْ أُصَلِّيَ رَكْعَتَيْ فَرْضَ صَلَاةِ الْجُمُعَةِ...", bn: "উচ্চারণ: নাওয়াইতু আন উসল্লিয়া রাক‘আতাই ফরদ্বা সালাতিল জুমুয়াতি..." },
+            { t: "সেহরি খাওয়ার দোয়া", ar: "نَوَيْتُ أَنْ أَصُومَ غَدًا مِنْ شَهْرِ رَمَضَانَ الْمُبَارَكِ فَرْضًا لَكَ يَا اللَّهُ فَتَقَبَّلْ مِنِّي", bn: "উচ্চারণ: নাওয়াইতু আন আছুমা গাদাম মিন শাহরি রামাদানাল মুবারাকি ফারদান লাকা ইয়া আল্লাহু ফাতাকাব্বাল মিন্নি।" },
+            { t: "ইফতারের দোয়া", ar: "اللَّهُمَّ لَكَ صُمْتُ وَعَلَىٰ رِزْقِكَ أَفْطَرْتُ", bn: "উচ্চারণ: আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিযক্বিকা আফতারতু।" }
+        ];
+
+        let offset = localStorage.getItem('moffset') ? parseInt(localStorage.getItem('moffset')) : 0;
+
+        function showSection(id, el) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            el.classList.add('active');
+        }
+
+        function updateClock() {
+            const now = new Date(new Date().getTime() + offset);
+            document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            document.getElementById('date-display').innerText = now.toLocaleDateString('bn-BD', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        }
+        setInterval(updateClock, 1000);
+
+        let hIdx = 0;
+        setInterval(() => {
+            const hElem = document.getElementById('hadith-text');
+            hElem.style.opacity = 0;
+            setTimeout(() => {
+                hIdx = (hIdx + 1) % hadiths.length;
+                hElem.innerText = `"${hadiths[hIdx]}"`;
+                hElem.style.opacity = 1;
+            }, 600);
+        }, 5000);
+
+        function loadPrayers() {
+            let times = JSON.parse(localStorage.getItem('c_prayers')) || { Fajr: "05:12", Sunrise: "06:25", Dhuhr: "12:15", Asr: "04:12", Sunset: "05:56", Maghrib: "05:59", Isha: "07:18" };
+            let h = "";
+            ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"].forEach(k => {
+                h += `<div class="p-row"><span>${pNames[k]}</span><span class="p-time">${times[k]}</span></div>`;
+            });
+            document.getElementById('prayer-list').innerHTML = h;
+            document.getElementById('v-sunrise').innerText = times.Sunrise;
+            document.getElementById('v-sunset').innerText = times.Sunset;
+        }
+
+        function loadDuas() {
+            let h = "";
+            duaData.forEach(d => {
+                h += `<div class="dua-card"><span class="dua-title">${d.t}</span><span class="dua-ar">${d.ar}</span><span class="dua-bn">${d.bn}</span></div>`;
+            });
+            document.getElementById('dua-content').innerHTML = h;
+        }
+
+        function saveAdmin() {
+            const tVal = document.getElementById('adm-time').value;
+            if(tVal) { offset = new Date(tVal).getTime() - new Date().getTime(); localStorage.setItem('moffset', offset); }
+            let cp = {};
+            Object.keys(pNames).forEach(k => { const v = document.getElementById('in-'+k).value; if(v) cp[k] = v; });
+            if(Object.keys(cp).length > 0) localStorage.setItem('c_prayers', JSON.stringify(cp));
+            alert("সব ডাটা সফলভাবে সংরক্ষিত হয়েছে!"); location.reload();
+        }
+
+        window.onload = () => {
+            let admH = "";
+            Object.keys(pNames).forEach(k => admH += `<label>${pNames[k]}:</label><input type="time" id="in-${k}" class="admin-input">`);
+            document.getElementById('adm-prayer-inputs').innerHTML = admH;
+            updateClock(); loadPrayers(); loadDuas();
+            
+            let rh = "";
+            for(let i=1; i<=30; i++) rh += `<tr><td>${i}</td><td>${18+i} Feb</td><td>05:08</td><td>06:02</td></tr>`;
+            document.getElementById('ramadan-table').innerHTML = rh;
+        };
+    </script>
+</body>
+</html>
